@@ -30,5 +30,9 @@ nautilus -q
 rm -r Arch-Config-main
 ```
 
+### 6. Install nautilus-python
+```bash
+sudo pacman -S nautilus-python
+```
 ## After installation
 Right-click on files or folders in Nautilus to see the "Open in VSCode" option.
