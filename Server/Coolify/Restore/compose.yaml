@@ -1,0 +1,29 @@
+services:
+  backup:
+    image: 'offen/docker-volume-backup:latest'
+    environment:
+      AWS_ENDPOINT: ${AWS_ENDPOINT}
+      AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_S3_PATH: ${AWS_S3_PATH}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS}
+      NOTIFICATION_URLS: ${NOTIFICATION_URLS}
+      NOTIFICATION_LEVEL: ${NOTIFICATION_LEVEL}
+    volumes:
+      - 'media_authentik:/backup/media_authentik:ro'
+      - 'certs_authentik:/backup/certs_authentik:ro'
+      - 'custom-templates_authentik:/backup/custom-templates_authentik:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
+volumes:
+  media_authentik:
+    name: n0sk0cgww44ggco8s4sco4c4_media
+    external: true
+  certs_authentik:
+    name: n0sk0cgww44ggco8s4sco4c4_certs
+    external: true
+  custom-templates_authentik:
+    name: n0sk0cgww44ggco8s4sco4c4_custom-templates
+    external: true
